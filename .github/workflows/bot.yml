@@ -1,12 +1,16 @@
 name: Ajan 10K bot
 
+# GitHub'ın zamanlayıcısı (schedule) yoğun saatlerde çalışmaları geciktiriyor ya da hiç başlatmıyor.
+# Bu yüzden bot tek bir iş içinde ~5,5 saat boyunca 3 dakikada bir çalışır, sonunda kendi yerine
+# yeni bir tur başlatır. Zamanlayıcı yalnızca yedek olarak kalır.
 on:
   schedule:
-    - cron: "*/5 * * * *"   # GitHub en fazla 5 dakikada bir izin verir; gecikmeler mumlarla telafi edilir
-  workflow_dispatch: {}     # Actions sekmesinden elle çalıştırma
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}
 
 permissions:
   contents: write
+  actions: write
 
 concurrency:
   group: ajan10k-bot
@@ -15,19 +19,32 @@ concurrency:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Botu çalıştır
-        run: node bot/run.mjs
-      - name: Durumu kaydet
+      - name: Bot döngüsü (3 dakikada bir)
         run: |
           git config user.name "ajan10k-bot"
           git config user.email "ajan10k-bot@users.noreply.github.com"
-          git add data/state.json
-          git diff --cached --quiet && exit 0
-          git commit -m "Bot çalıştı: $(date -u +'%Y-%m-%d %H:%M UTC')"
-          git push
+          end=$((SECONDS + 5*3600 + 30*60))
+          while [ $SECONDS -lt $end ]; do
+            git pull -q --rebase origin main || true
+            node bot/run.mjs || echo "Bu turda hata oluştu, 3 dakika sonra tekrar denenecek."
+            git add data/state.json
+            if ! git diff --cached --quiet; then
+              git commit -qm "Bot çalıştı: $(date -u +'%Y-%m-%d %H:%M UTC')"
+              git push -q || (git pull -q --rebase origin main && git push -q) || echo "Kayıt gönderilemedi, sonraki turda tekrar denenecek."
+            fi
+            if node -e "process.exit(require('./data/state.json').done ? 0 : 1)"; then echo "Simülasyon bitti."; break; fi
+            sleep 180
+          done
+      - name: Sonraki turu başlat
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if node -e "process.exit(require('./data/state.json').done ? 0 : 1)"; then echo "Bitti, yeni tur yok."; exit 0; fi
+          gh workflow run bot.yml --ref main
