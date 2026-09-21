@@ -1,44 +1,39 @@
 {
  "startCapital": 10000,
  "target": 20000,
- "cash": 2963.02,
+ "cash": 7941.97023909145,
  "done": null,
  "endTime": 1790629140000,
  "startTime": 1789974300000,
  "positions": [
-  {
-   "id": "btc1",
-   "asset": "BTC",
-   "lev": 5,
-   "margin": 4000,
-   "entry": 80304,
-   "stop": 81900,
-   "target": 84319,
-   "high": 83834,
-   "openedAt": 1789974300000
-  },
   {
    "id": "eth1",
    "asset": "ETH",
    "lev": 5,
    "margin": 3000,
    "entry": 2573.59,
-   "stop": 2640,
+   "stop": 2681.23,
    "target": 2779.48,
-   "high": 2704.55,
+   "high": 2749.98,
    "openedAt": 1789974300000
   }
  ],
- "pending": [],
+ "pending": [
+  {
+   "asset": "BTC",
+   "trigger": 83054.21,
+   "at": 1789982760000
+  }
+ ],
  "prices": {
-  "BTC": 83834,
-  "ETH": 2704.55,
-  "USDTRY": 48.8002
+  "BTC": 84897.74,
+  "ETH": 2738.41,
+  "USDTRY": 48.61
  },
- "lastTick": 1789980120000,
- "lastHist": 1789980120000,
- "lastRun": null,
- "runs": 0,
+ "lastTick": 1789983660000,
+ "lastHist": 1789982820000,
+ "lastRun": 1789983688969,
+ "runs": 1,
  "history": [
   {
    "t": 1789974300000,
@@ -47,6 +42,18 @@
   {
    "t": 1789980120000,
    "eq": 11608
+  },
+  {
+   "t": 1789981020000,
+   "eq": 11546.6
+  },
+  {
+   "t": 1789981920000,
+   "eq": 11642.35
+  },
+  {
+   "t": 1789982820000,
+   "eq": 11714.59
   }
  ],
  "log": [
@@ -79,6 +86,23 @@
    "t": 1789980120000,
    "type": "BİLGİ",
    "text": "Bot GitHub Actions’a taşındı. Bundan sonra fiyatlar Binance’ten, kararlar sabit kurallarla."
+  },
+  {
+   "t": 1789982760000,
+   "type": "HEDEF",
+   "text": "Bitcoin 5x kapatıldı: $80,304 → $84,319. Sonuç +1.000₺ (komisyon 21₺)."
+  },
+  {
+   "t": 1789982760000,
+   "type": "PLAN",
+   "text": "Bitcoin $83,054.22 seviyesine geri çekilirse yeniden alınacak."
   }
- ]
+ ],
+ "live": {
+  "BTC": 84861.97,
+  "ETH": 2737.09,
+  "USDTRY": 48.61,
+  "at": 1789983688969
+ },
+ "equity": 11902.61
 }
