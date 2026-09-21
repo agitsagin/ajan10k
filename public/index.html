@@ -54,7 +54,7 @@ const pct=n=>(n>=0?'+':'')+n.toLocaleString('tr-TR',{minimumFractionDigits:1,max
 const cls=n=>n>=0?'pos':'neg';
 const when=t=>new Date(t).toLocaleString('tr-TR',{timeZone:'Europe/Istanbul',day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'});
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const value=(p,pr)=>{const pnl=p.margin*p.lev*(pr/p.entry-1);return{pnl,value:Math.max(0,p.margin+pnl)}};
+const value=(p,pr)=>{const pnl=p.qty*(pr-p.entry);return{pnl,value:Math.max(0,p.marginU+pnl)}};
 let S=null, err='';
 
 function chart(){
@@ -75,23 +75,36 @@ function render(){
   const status=S.done==='dead'?'Ajan kapatıldı.':S.done==='win'?'Hedef tuttu, ajan 2 katına çıktı.':S.done==='end'?'Süre doldu.':`Hedefe ${TL(S.target-eq)} kaldı, bitişe ${left} gün.`;
   const ago=S.lastRun?Math.round((Date.now()-S.lastRun)/60000):null;
   const alive=ago!==null&&ago<30;
+  const R=S.prices.USDTRY||48;
   const rows=S.positions.map(p=>{const pr=S.prices[p.asset]||p.entry,v=value(p,pr),mv=(pr/p.entry-1)*100;
-    return `<div class="row"><div class="nm">${NAME[p.asset]}<small>${p.lev}x long</small></div><div class="big r num ${cls(v.pnl)}">${v.pnl>=0?'+':''}${TL(v.pnl)}</div>
+    return `<div class="row"><div class="nm">${NAME[p.asset]}<small>${p.lev}x long</small></div><div class="big r num ${cls(v.pnl)}">${v.pnl>=0?'+':''}${TL(v.pnl*R)}</div>
     <div class="sub num">Giriş ${USD(p.entry)}, şimdi ${USD(pr)}</div><div class="sub r num ${cls(mv)}">${pct(mv)}</div>
-    <div class="sub num">Stop ${USD(p.stop)}, hedef ${USD(p.target)}</div><div class="sub r num">Teminat ${TL(p.margin)}</div></div>`}).join('');
+    <div class="sub num">Stop ${USD(p.stop)}, hedef ${USD(p.target)}</div><div class="sub r num">Teminat ${TL(p.marginU*R)}</div></div>`}).join('');
+  const k=S.costs||{}, totalCost=(k.fut||0)+(k.fx||0)+(k.slip||0)+(k.funding||0)+(k.silver||0);
+  const costRow=(n,v,d)=>`<div class="row"><div class="nm" style="font-weight:600;font-size:15px">${n}</div><div class="big r num neg">${v?'−'+TL(v):'0₺'}</div><div class="sub" style="grid-column:1/-1">${d}</div></div>`;
+  const costs=costRow('Vadeli işlem komisyonu',k.fut,'Binance USDⓈ-M: piyasa ve stop emirlerinde %0,05, limit emirlerde %0,02.')
+   +costRow('TL ↔ USDT çevrimi',k.fx,'Binance spot USDT/TRY, %0,1 komisyon ve alım-satım makası.')
+   +costRow('Kayma',k.slip,'Piyasa ve stop emirleri %0,01 kötü fiyattan dolar; fiyat stopun altına boşlukla açılırsa açılış fiyatından.')
+   +costRow('Fonlama',k.funding,'8 saatte bir, gerçek fonlama oranıyla. Kaynaklar sırasıyla Binance Vadeli, OKX, Hyperliquid; kullanılan kaynak günlükte yazar.')
+   +costRow('Gram gümüş makası',k.silver,'Alış ve satışta %0,75 (tahmini, geçmiş makas verisi bulunmadığı için).')
+   +costRow('Vergi',0,'2026 itibarıyla kriptoya özel işlem vergisi veya stopaj yürürlükte değil; bu büyüklükteki kazanç değer artış kazancı istisnasının altında.')
+   +`<div class="row"><div class="nm">Toplam</div><div class="big r num neg">−${TL(totalCost)}</div></div>`;
   const pend=S.pending.map(q=>`<div class="row"><div class="nm">${NAME[q.asset]}<small>alım emri bekliyor</small></div><div class="big r num">${USD(q.trigger)}</div></div>`).join('');
   const logs=[...S.log].reverse().map(l=>`<li><time>${when(l.t)}</time><span class="tag ${/STOP$|SAT|SÜRE/.test(l.type)?'neg':/AL|HEDEF|KÂR/.test(l.type)?'pos':''}">${esc(l.type)}</span>${esc(l.text)}</li>`).join('');
   const gh='https://github.com/'+REPO;
   app.innerHTML=`
   <h1>Ajan 10K, 1 haftada 2 kat ya da kapatılma</h1>
   <div class="equity num">${TL(eq)}</div>
-  <div class="delta num ${cls(ch)}">${pct(ch)} başlangıca göre</div>
+  <div class="delta num ${cls(ch)}">${pct(ch)} başlangıca göre, tüm maliyetler düşülmüş</div>
   <div class="meta">${status}</div>
   <div class="meta live"><span class="dot ${alive?'':'off'}"></span>${ago===null?'Bot henüz çalışmadı':`Bot son çalışma: ${ago} dk önce (${when(S.lastRun)}), toplam ${S.runs} çalışma`}</div>
   ${err?`<div class="banner">${esc(err)}</div>`:''}
   <div class="gauge"><div class="track"><div class="fill" style="width:${g}%"></div><div class="tick" style="left:${S.startCapital/S.target*100}%"></div><div class="marker" style="left:${g}%"></div></div>
   <div class="gl"><div><b>0₺</b>kapatılma</div><div style="text-align:center"><b>10.000₺</b>başlangıç</div><div class="r"><b>20.000₺</b>hedef</div></div></div>
-  <section><h2>Pozisyonlar</h2><div class="panel">${rows}${pend}<div class="row"><div class="nm">Nakit<small>2.000₺ dokunulmaz</small></div><div class="big r num">${TL(S.cash)}</div></div></div></section>
+  <section><h2>Pozisyonlar</h2><div class="panel">${rows}${pend}<div class="row"><div class="nm">TL nakit<small>2.000₺ dokunulmaz dahil</small></div><div class="big r num">${TL(S.tl??S.cash)}</div></div>
+   ${S.usdt>0.01?`<div class="row"><div class="nm">USDT cüzdanı<small>boşta</small></div><div class="big r num">${TL(S.usdt*R)}</div></div>`:''}</div></section>
+  <section><h2>Maliyetler</h2><div class="panel">${costs}</div>
+   <p class="meta">Yukarıdaki bakiye net tutardır: şu an tüm pozisyonları kapatıp TL'ye çevirsen eline geçecek para. Kapanış komisyonu, kayma ve USDT→TL çevrimi zaten düşülmüştür.</p></section>
   <section><h2>Bakiye yolculuğu</h2><div class="panel chart">${chart()}</div></section>
   <section><h2>Binance fiyatları</h2><div class="panel">
    <div class="row"><div class="nm">Bitcoin</div><div class="big r num">${S.live?USD(S.live.BTC):'…'}</div></div>
