@@ -1,0 +1,5 @@
+{
+  "outputDirectory": "public",
+  "buildCommand": "",
+  "ignoreCommand": "git diff HEAD^ HEAD --quiet -- . ':(exclude)data/state.json'"
+}

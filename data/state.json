@@ -1,0 +1,84 @@
+{
+ "startCapital": 10000,
+ "target": 20000,
+ "cash": 2963.02,
+ "done": null,
+ "endTime": 1790629140000,
+ "startTime": 1789974300000,
+ "positions": [
+  {
+   "id": "btc1",
+   "asset": "BTC",
+   "lev": 5,
+   "margin": 4000,
+   "entry": 80304,
+   "stop": 81900,
+   "target": 84319,
+   "high": 83834,
+   "openedAt": 1789974300000
+  },
+  {
+   "id": "eth1",
+   "asset": "ETH",
+   "lev": 5,
+   "margin": 3000,
+   "entry": 2573.59,
+   "stop": 2640,
+   "target": 2779.48,
+   "high": 2704.55,
+   "openedAt": 1789974300000
+  }
+ ],
+ "pending": [],
+ "prices": {
+  "BTC": 83834,
+  "ETH": 2704.55,
+  "USDTRY": 48.8002
+ },
+ "lastTick": 1789980120000,
+ "lastHist": 1789980120000,
+ "lastRun": null,
+ "runs": 0,
+ "history": [
+  {
+   "t": 1789974300000,
+   "eq": 9964
+  },
+  {
+   "t": 1789980120000,
+   "eq": 11608
+  }
+ ],
+ "log": [
+  {
+   "t": 1789974300000,
+   "type": "AL",
+   "text": "Bitcoin 5x long, 4.000₺ teminat, giriş $80.304 (kaynak: doviz.com)."
+  },
+  {
+   "t": 1789974300000,
+   "type": "AL",
+   "text": "Ethereum 5x long, 3.000₺ teminat, giriş $2.573,59 (kaynak: doviz.com)."
+  },
+  {
+   "t": 1789974300000,
+   "type": "AL",
+   "text": "Gram gümüş 1.000₺ spot, giriş 103,93₺."
+  },
+  {
+   "t": 1789980120000,
+   "type": "STOP GÜNC.",
+   "text": "Stoplar yukarı taşındı: BTC $81.900, ETH $2.640."
+  },
+  {
+   "t": 1789980120000,
+   "type": "SAT",
+   "text": "Gram gümüş 104,04₺’den satıldı. Bot yalnızca Binance’te doğrulanabilen varlıklarla devam ediyor."
+  },
+  {
+   "t": 1789980120000,
+   "type": "BİLGİ",
+   "text": "Bot GitHub Actions’a taşındı. Bundan sonra fiyatlar Binance’ten, kararlar sabit kurallarla."
+  }
+ ]
+}
