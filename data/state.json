@@ -5,7 +5,7 @@
  "startTime": 1789974300000,
  "endTime": 1790629140000,
  "tl": 2993.550466660252,
- "usdt": 102.28963649721587,
+ "usdt": 102.2861552020387,
  "silver": null,
  "positions": [
   {
@@ -28,18 +28,18 @@
   }
  ],
  "prices": {
-  "BTC": 85927.71,
-  "ETH": 2755.27,
+  "BTC": 85909.68,
+  "ETH": 2753.97,
   "USDTRY": 48.65
  },
  "costs": {
   "fut": 21.62421679713377,
   "fx": 8.398320335933022,
   "slip": 3.4867344585560436,
-  "funding": 3.1805799490915208,
+  "funding": 3.349944959460768,
   "silver": 15.00793803521601
  },
- "lastTick": 1790006400000,
+ "lastTick": 1790006580000,
  "lastHist": 1790005800000,
  "history": [
   {
@@ -237,21 +237,27 @@
    "t": 1789998660000,
    "type": "PLAN",
    "text": "Bitcoin için $84,447.51 seviyesine limit alış emri bırakıldı."
+  },
+  {
+   "t": 1790006400000,
+   "type": "FONLAMA",
+   "text": "Ethereum fonlama oranı %0.0011 (OKX): ödenen 0₺."
   }
  ],
  "done": null,
- "runs": 87,
+ "runs": 88,
  "fundingDone": [
-  1789977600000
+  1789977600000,
+  1790006400000
  ],
  "live": {
-  "BTC": 85893.14,
-  "ETH": 2754.12,
+  "BTC": 85861.67,
+  "ETH": 2751.82,
   "USDTRY": 48.65,
-  "at": 1790006443513
+  "at": 1790006626607
  },
- "lastRun": 1790006443513,
- "equity": 11441.8,
+ "lastRun": 1790006626607,
+ "equity": 11434.35,
  "costModel": {
   "spotFee": 0.001,
   "fxSlip": 0.0002,
