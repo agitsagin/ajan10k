@@ -5,20 +5,9 @@
  "startTime": 1789974300000,
  "endTime": 1790629140000,
  "tl": 2993.550466660252,
- "usdt": 0,
+ "usdt": 102.28963649721587,
  "silver": null,
  "positions": [
-  {
-   "asset": "BTC",
-   "lev": 5,
-   "marginU": 81.89234295257833,
-   "qty": 0.005017291895414523,
-   "entry": 81650.96428,
-   "stop": 83416.12,
-   "target": 85733.51,
-   "high": 85554.99,
-   "openedAt": 1789974300000
-  },
   {
    "asset": "ETH",
    "lev": 5,
@@ -31,21 +20,27 @@
    "openedAt": 1789974300000
   }
  ],
- "pending": [],
+ "pending": [
+  {
+   "asset": "BTC",
+   "trigger": 84447.51,
+   "at": 1789998660000
+  }
+ ],
  "prices": {
-  "BTC": 85385.59,
-  "ETH": 2729.84,
-  "USDTRY": 48.7
+  "BTC": 85734.21,
+  "ETH": 2740.93,
+  "USDTRY": 48.69
  },
  "costs": {
-  "fut": 17.435415660010143,
+  "fut": 21.62421679713377,
   "fx": 8.398320335933022,
   "slip": 3.4867344585560436,
   "funding": 3.1805799490915208,
   "silver": 15.00793803521601
  },
- "lastTick": 1789998540000,
- "lastHist": 1789997700000,
+ "lastTick": 1789998720000,
+ "lastHist": 1789998600000,
  "history": [
   {
    "t": 1789974300000,
@@ -154,6 +149,10 @@
   {
    "t": 1789997700000,
    "eq": 11196.54
+  },
+  {
+   "t": 1789998600000,
+   "eq": 11232.36
   }
  ],
  "log": [
@@ -196,21 +195,31 @@
    "t": 1789980120000,
    "type": "SAT",
    "text": "Gram gümüş 104,04₺'den satıldı. Satış makası dahil net 994₺ (canlı gümüş verisi olmadığı için pozisyon kapatıldı)."
+  },
+  {
+   "t": 1789998660000,
+   "type": "HEDEF",
+   "text": "Bitcoin kapatıldı: $81,650.96 → $85,733.51. Brüt +997₺, komisyon 4₺."
+  },
+  {
+   "t": 1789998660000,
+   "type": "PLAN",
+   "text": "Bitcoin için $84,447.51 seviyesine limit alış emri bırakıldı."
   }
  ],
  "done": null,
- "runs": 44,
+ "runs": 45,
  "fundingDone": [
   1789977600000
  ],
  "live": {
-  "BTC": 85364.55,
-  "ETH": 2729.25,
+  "BTC": 85741.16,
+  "ETH": 2741.05,
   "USDTRY": 48.69,
-  "at": 1789998576379
+  "at": 1789998759321
  },
- "lastRun": 1789998576379,
- "equity": 11214.76,
+ "lastRun": 1789998759321,
+ "equity": 11368.41,
  "costModel": {
   "spotFee": 0.001,
   "fxSlip": 0.0002,
