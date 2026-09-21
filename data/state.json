@@ -1,116 +1,195 @@
 {
+ "version": 2,
  "startCapital": 10000,
  "target": 20000,
- "cash": 7941.97023909145,
- "done": null,
- "endTime": 1790629140000,
  "startTime": 1789974300000,
+ "endTime": 1790629140000,
+ "tl": 2993.550466660252,
+ "usdt": 0,
+ "silver": null,
  "positions": [
   {
-   "id": "eth1",
+   "asset": "BTC",
+   "lev": 5,
+   "marginU": 81.89234295257833,
+   "qty": 0.005017291895414523,
+   "entry": 81650.96428,
+   "stop": 83167.37,
+   "target": 85733.51,
+   "high": 85299.87,
+   "openedAt": 1789974300000
+  },
+  {
    "asset": "ETH",
    "lev": 5,
-   "margin": 3000,
-   "entry": 2573.59,
+   "marginU": 61.425646178213064,
+   "qty": 0.11526545370507542,
+   "entry": 2665.5865320000003,
    "stop": 2681.23,
-   "target": 2779.48,
+   "target": 2798.87,
    "high": 2749.98,
    "openedAt": 1789974300000
   }
  ],
- "pending": [
-  {
-   "asset": "BTC",
-   "trigger": 83054.21,
-   "at": 1789982760000
-  }
- ],
+ "pending": [],
  "prices": {
-  "BTC": 84563.11,
-  "ETH": 2717.84,
-  "USDTRY": 48.62
+  "BTC": 84828.84,
+  "ETH": 2727.09,
+  "USDTRY": 48.67
  },
- "lastTick": 1789985160000,
- "lastHist": 1789984620000,
- "lastRun": 1789985174404,
- "runs": 2,
+ "costs": {
+  "fut": 17.435415660010143,
+  "fx": 8.398320335933022,
+  "slip": 3.4867344585560436,
+  "funding": 3.1805799490915208,
+  "silver": 15.00793803521601
+ },
+ "lastTick": 1789991100000,
+ "lastHist": 1789990500000,
  "history": [
   {
    "t": 1789974300000,
-   "eq": 9964
+   "eq": 9933.92
   },
   {
-   "t": 1789980120000,
-   "eq": 11608
+   "t": 1789975200000,
+   "eq": 9884.11
   },
   {
-   "t": 1789981020000,
-   "eq": 11546.6
+   "t": 1789976100000,
+   "eq": 9818.64
   },
   {
-   "t": 1789981920000,
-   "eq": 11642.35
+   "t": 1789977000000,
+   "eq": 9845.79
   },
   {
-   "t": 1789982820000,
-   "eq": 11714.59
+   "t": 1789977900000,
+   "eq": 9990.56
   },
   {
-   "t": 1789983720000,
-   "eq": 11907.04
+   "t": 1789978800000,
+   "eq": 10037.16
   },
   {
-   "t": 1789984620000,
-   "eq": 11788.9
+   "t": 1789979700000,
+   "eq": 10268.88
+  },
+  {
+   "t": 1789980600000,
+   "eq": 10667.62
+  },
+  {
+   "t": 1789981500000,
+   "eq": 10644.56
+  },
+  {
+   "t": 1789982400000,
+   "eq": 10684.62
+  },
+  {
+   "t": 1789983300000,
+   "eq": 11066.99
+  },
+  {
+   "t": 1789984200000,
+   "eq": 11072.69
+  },
+  {
+   "t": 1789985100000,
+   "eq": 10954.87
+  },
+  {
+   "t": 1789986000000,
+   "eq": 10987.14
+  },
+  {
+   "t": 1789986900000,
+   "eq": 10845.08
+  },
+  {
+   "t": 1789987800000,
+   "eq": 10825.24
+  },
+  {
+   "t": 1789988700000,
+   "eq": 10920.77
+  },
+  {
+   "t": 1789989600000,
+   "eq": 10957.58
+  },
+  {
+   "t": 1789990500000,
+   "eq": 11025.48
   }
  ],
  "log": [
   {
    "t": 1789974300000,
-   "type": "AL",
-   "text": "Bitcoin 5x long, 4.000₺ teminat, giriş $80.304 (kaynak: doviz.com)."
+   "type": "BİLGİ",
+   "text": "Maliyet modeli v2: tüm geçmiş 10:05'ten itibaren gerçek komisyon, kur çevrimi, kayma ve fonlama ile yeniden hesaplandı. Eski modelde bakiye 11.783₺ idi. Başlangıç fiyatları artık doviz.com değil, Binance."
   },
   {
    "t": 1789974300000,
    "type": "AL",
-   "text": "Ethereum 5x long, 3.000₺ teminat, giriş $2.573,59 (kaynak: doviz.com)."
+   "text": "Gram gümüş 1.000₺, 103,93₺'den. Alış makası (tahmini %0,75): 8₺."
+  },
+  {
+   "t": 1789974300000,
+   "type": "ÇEVRİM",
+   "text": "7.000₺, USDT'ye çevrildi (kur 48.6497, %0,1 komisyon): 143.74 USDT."
   },
   {
    "t": 1789974300000,
    "type": "AL",
-   "text": "Gram gümüş 1.000₺ spot, giriş 103,93₺."
+   "text": "Bitcoin 5x long, 3.985₺ teminat, giriş $81,650.96 (piyasa emri, komisyon 10₺). Stop $78,384.93, hedef $85,733.51."
   },
   {
-   "t": 1789980120000,
-   "type": "STOP GÜNC.",
-   "text": "Stoplar yukarı taşındı: BTC $81.900, ETH $2.640."
+   "t": 1789974300000,
+   "type": "AL",
+   "text": "Ethereum 5x long, 2.989₺ teminat, giriş $2,665.59 (piyasa emri, komisyon 7₺). Stop $2,558.96, hedef $2,798.87."
+  },
+  {
+   "t": 1789977600000,
+   "type": "FONLAMA",
+   "text": "Bitcoin fonlama oranı %0.0100 (OKX): ödenen 2₺."
+  },
+  {
+   "t": 1789977600000,
+   "type": "FONLAMA",
+   "text": "Ethereum fonlama oranı %0.0079 (OKX): ödenen 1₺."
   },
   {
    "t": 1789980120000,
    "type": "SAT",
-   "text": "Gram gümüş 104,04₺’den satıldı. Bot yalnızca Binance’te doğrulanabilen varlıklarla devam ediyor."
-  },
-  {
-   "t": 1789980120000,
-   "type": "BİLGİ",
-   "text": "Bot GitHub Actions’a taşındı. Bundan sonra fiyatlar Binance’ten, kararlar sabit kurallarla."
-  },
-  {
-   "t": 1789982760000,
-   "type": "HEDEF",
-   "text": "Bitcoin 5x kapatıldı: $80,304 → $84,319. Sonuç +1.000₺ (komisyon 21₺)."
-  },
-  {
-   "t": 1789982760000,
-   "type": "PLAN",
-   "text": "Bitcoin $83,054.22 seviyesine geri çekilirse yeniden alınacak."
+   "text": "Gram gümüş 104,04₺'den satıldı. Satış makası dahil net 994₺ (canlı gümüş verisi olmadığı için pozisyon kapatıldı)."
   }
  ],
+ "done": null,
+ "runs": 3,
+ "fundingDone": [
+  1789977600000
+ ],
  "live": {
-  "BTC": 84546.65,
-  "ETH": 2717.72,
-  "USDTRY": 48.62,
-  "at": 1789985174404
+  "BTC": 84780.59,
+  "ETH": 2723.41,
+  "USDTRY": 48.67,
+  "at": 1789991158163
  },
- "equity": 11782.72
+ "lastRun": 1789991158163,
+ "equity": 11058.59,
+ "costModel": {
+  "spotFee": 0.001,
+  "fxSlip": 0.0002,
+  "taker": 0.0005,
+  "maker": 0.0002,
+  "slip": 0.0001,
+  "mmr": {
+   "BTC": 0.004,
+   "ETH": 0.005
+  },
+  "silverSpread": 0.0075,
+  "lev": 5
+ }
 }
