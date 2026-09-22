@@ -5,34 +5,41 @@
  "startTime": 1789974300000,
  "endTime": 1790629140000,
  "tl": 2993.550466660252,
- "usdt": 179.01025818657533,
+ "usdt": 89.50512909328765,
  "silver": null,
- "positions": [],
+ "positions": [
+  {
+   "asset": "ETH",
+   "lev": 5,
+   "marginU": 89.41571337990777,
+   "qty": 0.16216772047471567,
+   "entry": 2756.89,
+   "stop": 2646.61,
+   "target": 2894.73,
+   "high": 2756.89,
+   "openedAt": 1790038680000
+  }
+ ],
  "pending": [
   {
    "asset": "BTC",
    "trigger": 84447.51,
    "at": 1789998660000
-  },
-  {
-   "asset": "ETH",
-   "trigger": 2756.89,
-   "at": 1790022060000
   }
  ],
  "prices": {
-  "BTC": 85957.13,
-  "ETH": 2759.9,
+  "BTC": 85890.71,
+  "ETH": 2754.49,
   "USDTRY": 48.68
  },
  "costs": {
-  "fut": 24.764531937819548,
+  "fut": 29.118183022287255,
   "fx": 8.398320335933022,
   "slip": 3.4867344585560436,
   "funding": 3.349944959460768,
   "silver": 15.00793803521601
  },
- "lastTick": 1790038620000,
+ "lastTick": 1790038800000,
  "lastHist": 1790038200000,
  "history": [
   {
@@ -389,23 +396,28 @@
    "t": 1790022060000,
    "type": "PLAN",
    "text": "Ethereum için $2,756.89 seviyesine limit alış emri bırakıldı."
+  },
+  {
+   "t": 1790038680000,
+   "type": "AL",
+   "text": "Ethereum 5x long, 4.354₺ teminat, giriş $2,756.89 (limit emir, komisyon 4₺). Stop $2,646.61, hedef $2,894.73."
   }
  ],
  "done": null,
- "runs": 263,
+ "runs": 264,
  "fundingDone": [
   1789977600000,
   1790006400000,
   1790035200000
  ],
  "live": {
-  "BTC": 85931.55,
-  "ETH": 2758.05,
+  "BTC": 85972.9,
+  "ETH": 2756.66,
   "USDTRY": 48.68,
-  "at": 1790038649742
+  "at": 1790038832432
  },
- "lastRun": 1790038649742,
- "equity": 11697.31,
+ "lastRun": 1790038832432,
+ "equity": 11661.01,
  "costModel": {
   "spotFee": 0.001,
   "fxSlip": 0.0002,
